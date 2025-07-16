@@ -145,7 +145,7 @@ export const translations = {
         description: "Contributing to academic discussions on digital labor markets and policy implications."
       },
       dataAnalysis: {
-        title: "Data Analysis",
+        title: "Big Data Analysis",
         description: "Utilizing Python, MATLAB, and SPSS for statistical analysis and data visualization."
       },
       financialMarkets: {
@@ -300,7 +300,7 @@ export const translations = {
         description: "参与数字劳动力市场和政策影响的学术讨论。"
       },
       dataAnalysis: {
-        title: "数据分析",
+        title: "大数据分析",
         description: "利用Python、MATLAB和SPSS进行统计分析和数据可视化。"
       },
       financialMarkets: {
