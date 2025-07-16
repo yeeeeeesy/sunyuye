@@ -68,7 +68,7 @@ export const translations = {
       contact: "联系我"
     },
     personal: {
-      name: "叶孙雨",
+      name: "叶孙渝",
       title: "经济学学生",
       university: "浙江大学",
       location: "美国加利福尼亚州伯克利",

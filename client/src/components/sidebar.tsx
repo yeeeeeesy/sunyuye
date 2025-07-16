@@ -17,7 +17,7 @@ export function Sidebar() {
   };
 
   return (
-    <div className="w-full md:w-80 bg-white shadow-lg fixed left-0 top-20 bottom-0 overflow-y-auto border-r border-gray-200">
+    <div className="w-full md:w-80 bg-white dark:bg-gray-900 shadow-lg fixed left-0 top-20 bottom-0 overflow-y-auto border-r border-gray-200 dark:border-gray-700">
       <div className="p-6">
         {/* Profile Photo */}
         <div className="flex justify-center mb-6">
@@ -30,10 +30,9 @@ export function Sidebar() {
         
         {/* Personal Info */}
         <div className="text-center mb-8">
-          <h1 className="text-2xl font-bold text-gray-900 mb-2">{t('personal.name')}</h1>
-          <p className="text-gray-600 mb-1">{t('personal.title')}</p>
-          <p className="text-gray-600 mb-4">{t('personal.university')}</p>
-          <p className="text-sm text-gray-500 flex items-center justify-center">
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">{t('personal.name')}</h1>
+          <p className="text-gray-600 dark:text-gray-300 mb-4">{t('personal.university')}</p>
+          <p className="text-sm text-gray-500 dark:text-gray-400 flex items-center justify-center">
             <MapPin className="w-4 h-4 mr-2" />
             {t('personal.location')}
           </p>
@@ -43,7 +42,7 @@ export function Sidebar() {
         <div className="space-y-3 mb-8">
           <button 
             onClick={handleEmailClick}
-            className="flex items-center w-full text-gray-600 hover:text-primary transition-colors"
+            className="flex items-center w-full text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
           >
             <Mail className="w-5 h-5 mr-3" />
             <span>yesunnyu@gmail.com</span>
@@ -53,7 +52,7 @@ export function Sidebar() {
             href="https://www.linkedin.com/in/sunyu-ye-a3a806373" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="flex items-center text-gray-600 hover:text-primary transition-colors"
+            className="flex items-center text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
           >
             <Linkedin className="w-5 h-5 mr-3" />
             LinkedIn Profile
@@ -63,7 +62,7 @@ export function Sidebar() {
             href="https://www.instagram.com/ysy200501?igsh=MTNibnJxNXN6eTV3eg%3D%3D&utm_source=qr" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="flex items-center text-gray-600 hover:text-primary transition-colors"
+            className="flex items-center text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
           >
             <Instagram className="w-5 h-5 mr-3" />
             Instagram
@@ -73,7 +72,7 @@ export function Sidebar() {
             href="https://github.com/yeeeeeesy" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="flex items-center text-gray-600 hover:text-primary transition-colors"
+            className="flex items-center text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
           >
             <Github className="w-5 h-5 mr-3" />
             GitHub
@@ -81,8 +80,8 @@ export function Sidebar() {
         </div>
 
         {/* Slogan */}
-        <div className="border-t border-gray-200 pt-6">
-          <p className="text-center text-gray-500 italic font-medium">"{t('personal.slogan')}"</p>
+        <div className="border-t border-gray-200 dark:border-gray-700 pt-6">
+          <p className="text-center text-gray-500 dark:text-gray-400 italic font-medium">"{t('personal.slogan')}"</p>
         </div>
       </div>
     </div>

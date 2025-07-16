@@ -45,11 +45,11 @@ export function ContentSections() {
     return (
       <div className="space-y-12">
         {[1, 2, 3, 4, 5].map((i) => (
-          <Card key={i} className="animate-pulse">
+          <Card key={i} className="animate-pulse bg-white dark:bg-gray-800">
             <CardContent className="pt-6">
-              <div className="h-4 bg-gray-200 rounded w-3/4 mb-4"></div>
-              <div className="h-3 bg-gray-200 rounded w-full mb-2"></div>
-              <div className="h-3 bg-gray-200 rounded w-5/6"></div>
+              <div className="h-4 bg-gray-200 dark:bg-gray-600 rounded w-3/4 mb-4"></div>
+              <div className="h-3 bg-gray-200 dark:bg-gray-600 rounded w-full mb-2"></div>
+              <div className="h-3 bg-gray-200 dark:bg-gray-600 rounded w-5/6"></div>
             </CardContent>
           </Card>
         ))}
@@ -60,39 +60,39 @@ export function ContentSections() {
   return (
     <div className="space-y-12">
       {/* Personal Introduction */}
-      <section id="home" className="bg-white rounded-xl shadow-sm p-8 border border-gray-200">
+      <section id="home" className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-8 border border-gray-200 dark:border-gray-700">
         <div className="prose prose-lg max-w-none">
-          <p className="text-gray-700 leading-relaxed mb-6">
+          <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
             {getContentBySection('about') || t('sections.about')}
           </p>
         </div>
       </section>
       {/* Research Focus */}
-      <section id="research" className="bg-gradient-to-r from-primary/5 to-accent/5 rounded-xl p-8 border border-gray-200">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">{t('sections.researchFocus')}</h2>
+      <section id="research" className="bg-gradient-to-r from-primary/5 to-accent/5 dark:from-primary/10 dark:to-accent/10 rounded-xl p-8 border border-gray-200 dark:border-gray-700">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">{t('sections.researchFocus')}</h2>
         <div className="grid md:grid-cols-2 gap-6">
-          <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100">
-            <h3 className="font-semibold text-gray-900 mb-2">{t('research.platformEconomy.title')}</h3>
-            <p className="text-gray-600 text-sm">{t('research.platformEconomy.description')}</p>
+          <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm border border-gray-100 dark:border-gray-600">
+            <h3 className="font-semibold text-gray-900 dark:text-white mb-2">{t('research.platformEconomy.title')}</h3>
+            <p className="text-gray-600 dark:text-gray-300 text-sm">{t('research.platformEconomy.description')}</p>
           </div>
-          <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100">
-            <h3 className="font-semibold text-gray-900 mb-2">{t('research.laborEconomics.title')}</h3>
-            <p className="text-gray-600 text-sm">{t('research.laborEconomics.description')}</p>
+          <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm border border-gray-100 dark:border-gray-600">
+            <h3 className="font-semibold text-gray-900 dark:text-white mb-2">{t('research.laborEconomics.title')}</h3>
+            <p className="text-gray-600 dark:text-gray-300 text-sm">{t('research.laborEconomics.description')}</p>
           </div>
-          <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100">
-            <h3 className="font-semibold text-gray-900 mb-2">{t('research.dataAnalysis.title')}</h3>
-            <p className="text-gray-600 text-sm">{t('research.dataAnalysis.description')}</p>
+          <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm border border-gray-100 dark:border-gray-600">
+            <h3 className="font-semibold text-gray-900 dark:text-white mb-2">{t('research.dataAnalysis.title')}</h3>
+            <p className="text-gray-600 dark:text-gray-300 text-sm">{t('research.dataAnalysis.description')}</p>
           </div>
-          <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100">
-            <h3 className="font-semibold text-gray-900 mb-2">{t('research.financialMarkets.title')}</h3>
-            <p className="text-gray-600 text-sm">{t('research.financialMarkets.description')}</p>
+          <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm border border-gray-100 dark:border-gray-600">
+            <h3 className="font-semibold text-gray-900 dark:text-white mb-2">{t('research.financialMarkets.title')}</h3>
+            <p className="text-gray-600 dark:text-gray-300 text-sm">{t('research.financialMarkets.description')}</p>
           </div>
         </div>
       </section>
       {/* Job Application Statement */}
-      <section className="bg-white rounded-xl shadow-sm p-8 border border-gray-200">
+      <section className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-8 border border-gray-200 dark:border-gray-700">
         <div className="prose prose-lg max-w-none">
-          <p className="text-gray-700 leading-relaxed mb-6">
+          <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
             I am actively seeking research assistant opportunities in LLM applications and economic data analysis. Feel free to reach out, or learn more from{' '}
             <Button 
               onClick={handleResumeDownload} 
@@ -104,97 +104,108 @@ export function ContentSections() {
             .
           </p>
         </div>
-      </section>
-      {/* Education */}
-      <section id="education" className="bg-white rounded-xl shadow-sm p-8 border border-gray-200">
-        <h2 className="text-3xl font-bold text-gray-900 mb-8">{t('sections.education')}</h2>
+       </section>
+      <section id="education" className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-8 border border-gray-200 dark:border-gray-700">
+        <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">{t('sections.education')}</h2>
         <div className="space-y-6">
-          <div className="border-l-4 border-primary pl-6">
-            <h3 className="text-xl font-semibold text-gray-900">Bachelor of Arts - Economics</h3>
-            <p className="text-primary font-medium flex items-center">
-              <MapPin className="w-4 h-4 mr-1" />
-              Zhejiang University
-            </p>
-            <p className="text-gray-600 flex items-center">
+          {/* Zhejiang University */}
+          <div className="border-l-4 border-blue-700 pl-6">
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white">Zhejiang University</h3>
+            <p className="text-blue-800 dark:text-blue-400 font-medium">Bachelor of Arts – Economics</p>
+            <p className="text-gray-700 dark:text-gray-300 flex items-center">
               <Calendar className="w-4 h-4 mr-1" />
-              2023 - 2027
+              2023 – 2027
+            </p>
+            <p className="text-gray-700 dark:text-gray-300 mt-2 text-sm">
+              <span className="font-semibold">Key Courses:</span> Game Theory · Industrial Organization Theory · Macroeconomics (A) · Econometrics · Selected Readings in Economic Literature and Academic Writing · Time Series Analysis · Mathematical Economics · Mathematical Statistics · Microeconomics (A) · Behavioral Economics · Political Economy · Intermediate Macroeconomics · Intermediate Econometrics · Intermediate Microeconomics
+            </p>
+            <p className="text-gray-700 dark:text-gray-300 mt-2 text-sm">
+              <span className="font-semibold">Minor Courses:</span>Mathematical Analysis · Advanced Algebra and Analytic Geometry · Ordinary Differential Equations · Complex Analysis · Real Analysis · Stochastic Processes · Probability Theory
             </p>
           </div>
-          <div className="border-l-4 border-accent pl-6">
-            <h3 className="text-xl font-semibold text-gray-900">Digital Transformation, Data and Decision</h3>
-            <p className="text-accent font-medium flex items-center">
-              <MapPin className="w-4 h-4 mr-1" />
-              University of California, Berkeley
-            </p>
-            <p className="text-gray-600 flex items-center">
+
+          {/* UC Berkeley */}
+          <div className="border-l-4 border-blue-700 pl-6">
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white">University of California, Berkeley</h3>
+            <p className="text-blue-800 dark:text-blue-400 font-medium">Summer Session</p>
+            <p className="text-gray-700 dark:text-gray-300 flex items-center">
               <Calendar className="w-4 h-4 mr-1" />
-              July 2025 - August 2025
+              July 2025 – August 2025
+            </p>
+            <p className="text-gray-700 dark:text-gray-300 mt-2 text-sm">
+              <span className="font-semibold">Key Courses:</span> Data and Decision · Digital Transformation
             </p>
           </div>
-          <div className="border-l-4 border-secondary pl-6">
-            <h3 className="text-xl font-semibold text-gray-900">Sustainable Finance Program</h3>
-            <p className="font-medium flex items-center text-[#9c9a9a]">
-              <MapPin className="w-4 h-4 mr-1" />
-              Nanyang Technological University Singapore
-            </p>
-            <p className="text-gray-600 flex items-center">
+
+          {/* NTU Singapore */}
+          <div className="border-l-4 border-blue-700 pl-6">
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white">Nanyang Technological University, Singapore</h3>
+            <p className="text-blue-800 dark:text-blue-400 font-medium">Summer Program</p>
+            <p className="text-gray-700 dark:text-gray-300 flex items-center">
               <Calendar className="w-4 h-4 mr-1" />
               July 2024
+            </p>
+            <p className="text-gray-700 dark:text-gray-300 mt-2 text-sm">
+              <span className="font-semibold">Key Courses:</span> Sustainable Finance
             </p>
           </div>
         </div>
       </section>
+      
+    
       {/* Experience */}
-      <section id="experience" className="bg-white rounded-xl shadow-sm p-8 border border-gray-200">
-        <h2 className="text-3xl font-bold text-gray-900 mb-8">{t('sections.experience')}</h2>
+      <section id="experience" className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-8 border border-gray-200 dark:border-gray-700">
+        <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">{t('sections.experience')}</h2>
         <div className="space-y-8">
+          {/* Experience 1 */}
           <div className="relative">
             <div className="flex items-start space-x-4">
-              <div className="w-3 h-3 bg-primary rounded-full mt-2"></div>
+              <div className="w-3 h-3 bg-blue-800 rounded-full mt-2"></div>
               <div className="flex-1">
                 <h3 className="text-xl font-semibold text-gray-900">Research Assistant</h3>
-                <p className="text-primary font-medium">Zhejiang University</p>
+                <p className="text-blue-800 font-medium">Zhejiang University</p>
                 <p className="text-gray-600 mb-4">February 2025 - Present</p>
                 <ul className="space-y-2 text-gray-700">
                   <li className="flex items-start">
-                    <ChevronRight className="w-4 h-4 text-primary mt-0.5 mr-2 flex-shrink-0" />
+                    <ChevronRight className="w-4 h-4 text-blue-800 mt-0.5 mr-2 flex-shrink-0" />
                     Research Assistant for Prof. Zhe Yuan on platform economy and gig workers research
                   </li>
                   <li className="flex items-start">
-                    <ChevronRight className="w-4 h-4 text-primary mt-0.5 mr-2 flex-shrink-0" />
+                    <ChevronRight className="w-4 h-4 text-blue-800 mt-0.5 mr-2 flex-shrink-0" />
                     Analyzed 12,447 platform transaction datasets and 10,028+ survey responses
                   </li>
                   <li className="flex items-start">
-                    <ChevronRight className="w-4 h-4 text-primary mt-0.5 mr-2 flex-shrink-0" />
+                    <ChevronRight className="w-4 h-4 text-blue-800 mt-0.5 mr-2 flex-shrink-0" />
                     Authored comprehensive 29,898-word industry white paper on gig economy
                   </li>
                   <li className="flex items-start">
-                    <ChevronRight className="w-4 h-4 text-primary mt-0.5 mr-2 flex-shrink-0" />
+                    <ChevronRight className="w-4 h-4 text-blue-800 mt-0.5 mr-2 flex-shrink-0" />
                     Utilized Python and MATLAB for data processing and statistical analysis
                   </li>
                 </ul>
               </div>
             </div>
           </div>
-          
+
+          {/* Experience 2 */}
           <div className="relative">
             <div className="flex items-start space-x-4">
-              <div className="w-3 h-3 bg-accent rounded-full mt-2"></div>
+              <div className="w-3 h-3 bg-blue-800 rounded-full mt-2"></div>
               <div className="flex-1">
                 <h3 className="text-xl font-semibold text-gray-900">Director of General Affairs Department</h3>
-                <p className="text-accent font-medium">Zhejiang University Youth Volunteer Guidance Center</p>
+                <p className="text-blue-800 font-medium">Zhejiang University Youth Volunteer Guidance Center</p>
                 <p className="text-gray-600 mb-4">June 2024 - May 2025</p>
                 <ul className="space-y-2 text-gray-700">
                   <li className="flex items-start">
-                    <ChevronRight className="w-4 h-4 text-accent mt-0.5 mr-2 flex-shrink-0" />
+                    <ChevronRight className="w-4 h-4 text-blue-800 mt-0.5 mr-2 flex-shrink-0" />
                     Led development of university-wide volunteer project website
                   </li>
                   <li className="flex items-start">
-                    <ChevronRight className="w-4 h-4 text-accent mt-0.5 mr-2 flex-shrink-0" />
+                    <ChevronRight className="w-4 h-4 text-blue-800 mt-0.5 mr-2 flex-shrink-0" />
                     Supervised records of 40,000+ star-rated student volunteers
                   </li>
                   <li className="flex items-start">
-                    <ChevronRight className="w-4 h-4 text-accent mt-0.5 mr-2 flex-shrink-0" />
+                    <ChevronRight className="w-4 h-4 text-blue-800 mt-0.5 mr-2 flex-shrink-0" />
                     Collaborated with university departments to streamline evaluation processes
                   </li>
                 </ul>
@@ -203,25 +214,25 @@ export function ContentSections() {
           </div>
         </div>
       </section>
+
+
+      
       {/* Programs & Awards */}
-      <section id="programs" className="bg-white rounded-xl shadow-sm p-8 border border-gray-200">
-        <h2 className="text-3xl font-bold text-gray-900 mb-8">{t('sections.programs')}</h2>
+      <section id="programs" className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-8 border border-gray-200 dark:border-gray-700">
+        <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">{t('sections.programs')}</h2>
         <div className="grid md:grid-cols-2 gap-6">
           <div className="bg-gradient-to-br from-primary/5 to-primary/10 rounded-lg p-6 border border-primary/20">
             <h3 className="font-semibold text-gray-900 mb-2 flex items-center">
-              <Award className="w-5 h-5 mr-2 text-primary" />
-              Mathematical Contest In Modeling
+              2025 Mathematical Contest In Modeling
             </h3>
             <span className="inline-block bg-primary text-white px-3 py-1 rounded-full text-sm font-medium">Finalist</span>
             <p className="text-gray-600 text-sm mt-3">Recognized for excellence in mathematical modeling and analytical problem-solving.</p>
           </div>
           <div className="bg-gradient-to-br from-accent/5 to-accent/10 rounded-lg p-6 border border-accent/20">
             <h3 className="font-semibold text-gray-900 mb-2 flex items-center">
-              <Award className="w-5 h-5 mr-2 text-accent" />
-              UC Berkeley Summer Program
+              2024 Zhejiang Provincial College Student Advanced Mathematics Competition
             </h3>
-            <span className="inline-block bg-accent text-white px-3 py-1 rounded-full text-sm font-medium">Completed</span>
-            <p className="text-gray-600 text-sm mt-3">Digital transformation and data-driven decision making program.</p>
+            <span className="inline-block bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">Second Prize</span>
           </div>
         </div>
       </section>
@@ -233,11 +244,11 @@ export function ContentSections() {
             <h3 className="text-lg font-semibold text-gray-900 mb-4">{t('skills.technical')}</h3>
             <div className="space-y-3">
               {[
-                { name: 'Python', level: 85 },
-                { name: 'MATLAB', level: 85 },
+                { name: 'Python', level: 90 },
+                { name: 'LaTeX', level: 85 },
+                { name: 'MATLAB', level: 82 },
                 { name: 'STATA', level: 80 },
-                { name: 'SPSS', level: 80 },
-                { name: 'LaTeX', level: 75 }
+                { name: 'SPSS', level: 75 }
               ].map(skill => (
                 <div key={skill.name} className="flex justify-between items-center">
                   <span className="text-gray-700">{skill.name}</span>
@@ -272,7 +283,7 @@ export function ContentSections() {
                   <span className="text-sm text-gray-500">{t('skills.native')}</span>
                 </div>
                 <div className="w-full bg-gray-200 rounded-full h-2">
-                  <div className="bg-accent h-2 rounded-full w-full"></div>
+                  <div className="bg-blue-600 h-2 rounded-full w-full"></div>
                 </div>
               </div>
               <div>
@@ -281,7 +292,7 @@ export function ContentSections() {
                   <span className="text-sm text-gray-500">{t('skills.professional')}</span>
                 </div>
                 <div className="w-full bg-gray-200 rounded-full h-2">
-                  <div className="bg-accent h-2 rounded-full w-5/6"></div>
+                  <div className="bg-blue-600 h-2 rounded-full w-5/6"></div>
                 </div>
               </div>
             </div>
@@ -314,10 +325,10 @@ export function ContentSections() {
                 <a href="https://www.linkedin.com/in/sunyu-ye-a3a806373" target="_blank" rel="noopener noreferrer" className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors">
                   <Linkedin className="w-5 h-5" />
                 </a>
-                <a href="#" target="_blank" rel="noopener noreferrer" className="w-12 h-12 bg-pink-600 text-white rounded-full flex items-center justify-center hover:bg-pink-700 transition-colors">
+                <a href="https://www.instagram.com/ysy200501?igsh=MTNibnJxNXN6eTV3eg%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" className="w-12 h-12 bg-pink-600 text-white rounded-full flex items-center justify-center hover:bg-pink-700 transition-colors">
                   <Instagram className="w-5 h-5" />
                 </a>
-                <a href="#" target="_blank" rel="noopener noreferrer" className="w-12 h-12 bg-gray-800 text-white rounded-full flex items-center justify-center hover:bg-gray-900 transition-colors">
+                <a href="https://github.com/yeeeeeesy" target="_blank" rel="noopener noreferrer" className="w-12 h-12 bg-gray-800 text-white rounded-full flex items-center justify-center hover:bg-gray-900 transition-colors">
                   <Github className="w-5 h-5" />
                 </a>
               </div>

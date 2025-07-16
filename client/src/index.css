@@ -64,7 +64,7 @@
 
 @layer components {
   .prose {
-    @apply text-gray-700;
+    @apply text-gray-700 dark:text-gray-300;
   }
   
   .prose p {

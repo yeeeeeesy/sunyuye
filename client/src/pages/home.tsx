@@ -5,7 +5,7 @@ import { AIChatbot } from '@/components/ai-chatbot';
 
 export default function Home() {
   return (
-    <div className="bg-gray-50 min-h-screen">
+    <div className="bg-gray-50 dark:bg-gray-900 min-h-screen">
       <Navigation />
       
       <div className="flex pt-20">

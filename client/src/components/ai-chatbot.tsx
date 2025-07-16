@@ -118,7 +118,7 @@ export function AIChatbot() {
               <X className="h-4 w-4" />
             </Button>
           </div>
-          <p className="text-sm text-gray-600">Ask me about Sunyu's background and experience</p>
+          <p className="text-sm text-gray-600 dark:text-gray-400">Ask me about Sunyu's background and experience</p>
         </CardHeader>
         
         <CardContent className="flex flex-col h-full pb-4">
@@ -133,7 +133,7 @@ export function AIChatbot() {
                     className={`max-w-[80%] px-3 py-2 rounded-lg text-sm ${
                       message.type === 'user'
                         ? 'bg-primary text-white'
-                        : 'bg-gray-100 text-gray-900'
+                        : 'bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100'
                     }`}
                   >
                     {message.content}
@@ -142,7 +142,7 @@ export function AIChatbot() {
               ))}
               {isLoading && (
                 <div className="flex justify-start">
-                  <div className="bg-gray-100 text-gray-900 px-3 py-2 rounded-lg text-sm flex items-center">
+                  <div className="bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100 px-3 py-2 rounded-lg text-sm flex items-center">
                     <Loader2 className="h-4 w-4 animate-spin mr-2" />
                     Thinking...
                   </div>
