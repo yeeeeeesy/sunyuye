@@ -4,7 +4,7 @@ import { translations, type Language } from '@/lib/translations';
 interface LanguageContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
-  t: (keyPath: string) => string;
+  t: (keyPath: string, options?: { returnObjects?: boolean }) => any;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -23,17 +23,18 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     setLanguage(lang);
     localStorage.setItem('portfolio-language', lang);
   };
-
-  const t = (keyPath: string): string => {
+  const t = (keyPath: string, options?: { returnObjects?: boolean }): any => {
     const keys = keyPath.split('.');
     let value: any = translations[language];
-    
     for (const key of keys) {
       value = value?.[key];
     }
-    
-    return value || keyPath;
+    if (value === undefined) return keyPath;
+    if (options?.returnObjects) return value; // 直接返回数组/对象
+    return typeof value === 'string' ? value : JSON.stringify(value);
   };
+
+
 
   return (
     <LanguageContext.Provider value={{ language, setLanguage: handleSetLanguage, t }}>

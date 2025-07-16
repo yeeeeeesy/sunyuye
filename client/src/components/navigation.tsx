@@ -53,6 +53,12 @@ export function Navigation() {
                 {t('nav.experience')}
               </button>
               <button 
+                onClick={() => scrollToSection('project')}
+                className="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
+              >
+                {t('nav.project')}
+              </button>
+              <button 
                 onClick={() => scrollToSection('programs')}
                 className="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
               >
@@ -82,20 +88,12 @@ export function Navigation() {
               {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
             </Button>
             <Button
-              variant={language === 'en' ? 'default' : 'outline'}
+              variant="outline"
               size="sm"
-              onClick={() => setLanguage('en')}
+              onClick={() => setLanguage(language === 'en' ? 'zh' : 'en')}
               className="px-3 py-1 text-sm"
             >
-              EN
-            </Button>
-            <Button
-              variant={language === 'zh' ? 'default' : 'outline'}
-              size="sm"
-              onClick={() => setLanguage('zh')}
-              className="px-3 py-1 text-sm"
-            >
-              中文
+              {language === 'en' ? 'EN' : '中文'}
             </Button>
           </div>
         </div>
