@@ -59,7 +59,6 @@ export function ContentSections() {
 
   return (
     <div className="space-y-12">
-      
       {/* Personal Introduction */}
       <section id="home" className="bg-white rounded-xl shadow-sm p-8 border border-gray-200">
         <div className="prose prose-lg max-w-none">
@@ -68,7 +67,6 @@ export function ContentSections() {
           </p>
         </div>
       </section>
-
       {/* Research Focus */}
       <section id="research" className="bg-gradient-to-r from-primary/5 to-accent/5 rounded-xl p-8 border border-gray-200">
         <h2 className="text-2xl font-bold text-gray-900 mb-4">{t('sections.researchFocus')}</h2>
@@ -91,7 +89,6 @@ export function ContentSections() {
           </div>
         </div>
       </section>
-
       {/* Job Application Statement */}
       <section className="bg-white rounded-xl shadow-sm p-8 border border-gray-200">
         <div className="prose prose-lg max-w-none">
@@ -108,7 +105,6 @@ export function ContentSections() {
           </p>
         </div>
       </section>
-
       {/* Education */}
       <section id="education" className="bg-white rounded-xl shadow-sm p-8 border border-gray-200">
         <h2 className="text-3xl font-bold text-gray-900 mb-8">{t('sections.education')}</h2>
@@ -137,7 +133,7 @@ export function ContentSections() {
           </div>
           <div className="border-l-4 border-secondary pl-6">
             <h3 className="text-xl font-semibold text-gray-900">Sustainable Finance Program</h3>
-            <p className="text-secondary font-medium flex items-center">
+            <p className="font-medium flex items-center text-[#9c9a9a]">
               <MapPin className="w-4 h-4 mr-1" />
               Nanyang Technological University Singapore
             </p>
@@ -148,7 +144,6 @@ export function ContentSections() {
           </div>
         </div>
       </section>
-
       {/* Experience */}
       <section id="experience" className="bg-white rounded-xl shadow-sm p-8 border border-gray-200">
         <h2 className="text-3xl font-bold text-gray-900 mb-8">{t('sections.experience')}</h2>
@@ -208,7 +203,6 @@ export function ContentSections() {
           </div>
         </div>
       </section>
-
       {/* Programs & Awards */}
       <section id="programs" className="bg-white rounded-xl shadow-sm p-8 border border-gray-200">
         <h2 className="text-3xl font-bold text-gray-900 mb-8">{t('sections.programs')}</h2>
@@ -231,7 +225,6 @@ export function ContentSections() {
           </div>
         </div>
       </section>
-
       {/* Skills */}
       <section id="skills" className="bg-white rounded-xl shadow-sm p-8 border border-gray-200">
         <h2 className="text-3xl font-bold text-gray-900 mb-8">{t('sections.skills')}</h2>
@@ -295,7 +288,6 @@ export function ContentSections() {
           </div>
         </div>
       </section>
-
       {/* Get In Touch */}
       <section id="contact" className="bg-gradient-to-r from-primary/5 to-accent/5 rounded-xl p-8 border border-gray-200">
         <h2 className="text-3xl font-bold text-gray-900 mb-6">{t('contact.title')}</h2>
