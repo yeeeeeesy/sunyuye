@@ -100,7 +100,7 @@ export function ContentSections() {
             <Button 
               onClick={handleResumeDownload} 
               variant="link" 
-              className="p-0 h-auto font-semibold text-primary hover:underline"
+              className="p-0 h-auto font-semibold text-primary hover:underline text-[15px]"
             >
               My Resume
             </Button>

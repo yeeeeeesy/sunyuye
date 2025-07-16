@@ -48,7 +48,7 @@ export function Sidebar() {
             <Mail className="w-5 h-5 mr-3" />
             <span>yesunnyu@gmail.com</span>
           </button>
-          
+
           <a 
             href="https://www.linkedin.com/in/sunyu-ye-a3a806373" 
             target="_blank" 
@@ -58,9 +58,9 @@ export function Sidebar() {
             <Linkedin className="w-5 h-5 mr-3" />
             LinkedIn Profile
           </a>
-          
+
           <a 
-            href="#" 
+            href="https://www.instagram.com/ysy200501?igsh=MTNibnJxNXN6eTV3eg%3D%3D&utm_source=qr" 
             target="_blank" 
             rel="noopener noreferrer"
             className="flex items-center text-gray-600 hover:text-primary transition-colors"
@@ -68,9 +68,9 @@ export function Sidebar() {
             <Instagram className="w-5 h-5 mr-3" />
             Instagram
           </a>
-          
+
           <a 
-            href="#" 
+            href="https://github.com/yeeeeeesy" 
             target="_blank" 
             rel="noopener noreferrer"
             className="flex items-center text-gray-600 hover:text-primary transition-colors"
