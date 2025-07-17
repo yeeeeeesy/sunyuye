@@ -88,4 +88,27 @@ The application follows a monorepo structure with clear separation between clien
 - **Database**: Configured for Neon serverless PostgreSQL
 - **CDN Ready**: Static assets can be served from CDN if needed
 
-The application is designed to be deployment-ready for platforms like Vercel, Netlify, or traditional hosting providers, with environment-based configuration for seamless transitions between development and production environments.
+The application is designed to be deployment-ready for platforms like Vercel, Netlify, traditional hosting providers, and **GitHub Pages**, with environment-based configuration for seamless transitions between development and production environments.
+
+## GitHub Pages Deployment
+
+### Recent Updates (July 17, 2025)
+- **Added GitHub Pages Support**: Created static deployment configuration with fallback systems
+- **Static Data Integration**: Implemented client-side data serving for portfolio content and AI chatbot responses
+- **GitHub Actions Workflow**: Automated build and deployment pipeline for GitHub Pages
+- **SPA Routing Support**: Added client-side routing compatibility for GitHub Pages hosting
+
+### GitHub Pages Configuration
+- **Build Configuration**: `vite.config.github.ts` for static site generation
+- **Deployment Workflow**: `.github/workflows/deploy.yml` for automated CI/CD
+- **Static Fallbacks**: AI chatbot and portfolio data work without backend API
+- **Asset Management**: Resume and images served from static public directory
+- **Routing Support**: Custom 404.html and index.html for single-page application routing
+
+### Deployment Steps
+1. **Repository Setup**: Push code to GitHub repository
+2. **Enable GitHub Pages**: Configure repository settings for GitHub Actions deployment
+3. **Automatic Deployment**: Workflow triggers on push to main branch
+4. **Static Assets**: Resume and profile images automatically included in build
+
+The dual deployment strategy allows the application to work both as a full-stack application (with Express server and OpenAI integration) and as a static site (with fallback responses and client-side data) depending on the hosting environment.

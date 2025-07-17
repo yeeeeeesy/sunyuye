@@ -274,7 +274,7 @@ export const translations = {
       professional: "专业水平"
     },
     researchTags: {
-      dataAnalysis: "数据分析",
+      dataAnalysis: "大数据分析",
       economicAnalysis: "经济分析",
       platformEconomy: "平台经济",
       laborEconomics: "劳动经济学",
