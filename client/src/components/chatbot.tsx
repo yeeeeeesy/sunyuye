@@ -63,6 +63,7 @@ export function Chatbot({ variant = 'floating', className = '' }: ChatbotProps) 
       timestamp: new Date()
     };
 
+    const messageToSend = inputValue;
     setMessages(prev => [...prev, userMessage]);
     setInputValue('');
     setIsLoading(true);
@@ -74,7 +75,7 @@ export function Chatbot({ variant = 'floating', className = '' }: ChatbotProps) 
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          message: inputValue,
+          message: messageToSend,
           sessionId: sessionId.current,
           language
         }),
@@ -96,15 +97,26 @@ export function Chatbot({ variant = 'floating', className = '' }: ChatbotProps) 
       setMessages(prev => [...prev, botMessage]);
     } catch (error) {
       console.error('Error sending message:', error);
-      const errorMessage = language === 'zh' 
-        ? '抱歉，发送消息时出现错误。请稍后再试。'
-        : 'Sorry, there was an error sending your message. Please try again later.';
       
-      toast({
-        title: language === 'zh' ? '错误' : 'Error',
-        description: errorMessage,
-        variant: 'destructive'
-      });
+      // Use static response as fallback
+      const { generateStaticChatResponse } = await import('@/lib/static-data');
+      const staticResponse = generateStaticChatResponse(messageToSend, language);
+      
+      const botMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        type: 'bot',
+        content: staticResponse,
+        timestamp: new Date()
+      };
+
+      setMessages(prev => [...prev, botMessage]);
+      
+      // Optional: Show a subtle notice about using offline mode
+      if (language === 'zh') {
+        console.log('使用离线模式回复');
+      } else {
+        console.log('Using offline response mode');
+      }
     } finally {
       setIsLoading(false);
     }
