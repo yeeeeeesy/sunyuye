@@ -14,6 +14,10 @@ cp -r attached_assets/* client/public/ 2>/dev/null || true
 
 # Build the static site to docs folder
 echo "🔨 Building static site to docs folder..."
+echo "ℹ️  如果您知道GitHub仓库名，请设置环境变量："
+echo "   export GITHUB_REPOSITORY=用户名/仓库名"
+echo "   然后重新运行此脚本"
+echo ""
 npx vite build --config vite.config.github.ts
 
 # Copy additional files for GitHub Pages

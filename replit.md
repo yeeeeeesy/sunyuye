@@ -111,10 +111,10 @@ The application is designed to be deployment-ready for platforms like Vercel, Ne
 
 ### Deployment Steps
 1. **Repository Setup**: Push code to GitHub repository
-2. **Local Build**: Run `./build-github-pages.sh` to generate docs/ folder
+2. **Build with Base Path**: Run `./build-with-repo-name.sh <repository-name>` or set GITHUB_REPOSITORY environment variable
 3. **Commit Docs**: Add and commit the docs/ folder to git
 4. **Enable GitHub Pages**: Configure repository settings to deploy from main branch docs/ folder  
 5. **Live Site**: Portfolio available at https://username.github.io/repository-name
-6. **Static Assets**: Resume and profile images automatically included in build
+6. **Resource Loading**: Correct base path ensures all assets, CSS, and JS files load properly
 
 The dual deployment strategy allows the application to work both as a full-stack application (with Express server and OpenAI integration) and as a static site (with fallback responses and client-side data) depending on the hosting environment.

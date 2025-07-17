@@ -1,121 +1,102 @@
-# GitHub Pages Deployment Guide
+# GitHub Pages 部署完整指南
 
-## Quick Start
+## 关键问题解决：Base Path 配置
 
-Your portfolio is now ready for GitHub Pages! Follow these steps:
+正如您指出的，GitHub Pages 无法正确加载资源文件的根本原因是缺少正确的 base 路径配置。
 
-### 1. Create GitHub Repository
+### ✅ 已修复的问题
 
-```bash
-# Initialize git (if not already done)
-git init
+1. **Base Path 配置**: 已在 `vite.config.github.ts` 中添加动态 base 路径
+2. **环境变量支持**: 支持通过 `GITHUB_REPOSITORY` 环境变量指定仓库名
+3. **回退机制**: 如果没有指定仓库名，使用相对路径作为回退
 
-# Add all files
-git add .
+## 🚀 部署步骤
 
-# Commit your changes
-git commit -m "Initial portfolio commit"
-
-# Add your GitHub repository as origin
-git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
-
-# Push to main branch
-git push -u origin main
-```
-
-### 2. Enable GitHub Pages
-
-1. Go to your GitHub repository settings
-2. Scroll to **Pages** section
-3. Under **Source**, select **GitHub Actions**
-4. The workflow will automatically trigger on your next push
-
-### 3. Access Your Live Site
-
-Your portfolio will be live at:
-```
-https://YOUR_USERNAME.github.io/YOUR_REPO_NAME
-```
-
-## Features in GitHub Pages Version
-
-### ✅ What Works
-- **Full Portfolio Display**: All sections, education, experience, projects
-- **Bilingual Support**: Complete English/Chinese translation switching
-- **Dark Mode**: Full theme toggle functionality
-- **AI Chatbot**: Static responses about your background and experience
-- **Resume Download**: PDF download functionality
-- **Responsive Design**: Works on all devices
-- **SEO Optimization**: Proper meta tags and structure
-
-### 🔄 Automatic Fallbacks
-- **API Calls**: Gracefully fall back to static data when no server available
-- **Chat Responses**: Pre-configured intelligent responses about your background
-- **Asset Serving**: Images and resume served from static files
-
-## Local Testing
-
-To test the GitHub Pages build locally:
+### 方法一：使用仓库名构建（推荐）
 
 ```bash
-# Build for GitHub Pages
+# 替换 "your-repo-name" 为您的实际仓库名
+./build-with-repo-name.sh your-repo-name
+```
+
+### 方法二：设置环境变量
+
+```bash
+# 设置环境变量（替换为您的实际用户名和仓库名）
+export GITHUB_REPOSITORY="您的用户名/您的仓库名"
+
+# 然后构建
 ./build-github-pages.sh
-
-# Test locally (choose one method)
-cd dist && python3 -m http.server 8000
-# OR
-cd dist && python -m SimpleHTTPServer 8000
-# OR use any static file server
-
-# Visit http://localhost:8000
 ```
 
-## Customization for GitHub Pages
+### 方法三：手动指定 Base Path
 
-### Update Your Information
-1. **Translations**: Edit `client/src/lib/translations.ts`
-2. **Static Responses**: Modify `client/src/lib/static-data.ts`
-3. **Resume**: Replace `attached_assets/resume_1752651300851.pdf`
-4. **Profile Photo**: Replace `attached_assets/1_1752651304739.jpg`
-
-### Repository-Specific Configuration
-If you need to deploy to a subdirectory (e.g., `username.github.io/portfolio`):
-
-1. Update `vite.config.github.ts`:
-```typescript
-export default defineConfig({
-  base: '/your-repo-name/', // Change this to your repository name
-  // ... rest of config
-});
+直接编辑 `vite.config.github.ts`，将：
+```js
+base: process.env.GITHUB_REPOSITORY ? `/${process.env.GITHUB_REPOSITORY.split('/')[1]}/` : './',
 ```
 
-## Troubleshooting
+改为：
+```js
+base: '/您的仓库名/',
+```
 
-### Build Fails
-- Check that all dependencies are in `package.json`
-- Ensure Node.js version is compatible (see workflow file)
+## 📤 部署到GitHub
 
-### 404 Errors on Refresh
-- The workflow automatically handles SPA routing
-- Make sure the 404.html redirect script is working
+构建完成后：
 
-### Assets Not Loading
-- Verify files are in `attached_assets/` directory
-- Check that build script copies them to `client/public/`
+```bash
+# 提交docs文件夹
+git add docs/
+git commit -m "GitHub Pages部署 - 修复资源路径"
+git push origin main
+```
 
-## Advanced Configuration
+## ⚙️ GitHub Pages 设置
 
-### Custom Domain
-1. Add `CNAME` file to `client/public/` with your domain
-2. Configure DNS settings with your domain provider
-3. Enable HTTPS in repository settings
+1. 进入GitHub仓库 → Settings → Pages
+2. Source: "Deploy from a branch"
+3. Branch: "main"
+4. Folder: "/ docs"
+5. Save
 
-### Environment Variables
-For additional API integrations:
-1. Add secrets to repository settings
-2. Update GitHub Actions workflow to include them
-3. Modify the deployment configuration as needed
+## 🔍 验证部署
 
-## Support
+访问 `https://您的用户名.github.io/您的仓库名`
 
-The portfolio automatically detects GitHub Pages hosting and switches to static mode. Both server-based (development) and static (GitHub Pages) deployments are fully supported.
+如果看到：
+- ✅ 页面正常加载（不是空白页）
+- ✅ 样式正确显示
+- ✅ 中英文切换正常
+- ✅ 深色模式切换正常
+- ✅ AI聊天功能可用
+
+说明部署成功！
+
+## 🔧 故障排除
+
+### 1. 如果仍然看到空白页或404错误
+
+检查浏览器开发者工具的Console和Network标签，看是否有资源加载失败的错误。
+
+### 2. 如果资源路径仍然不正确
+
+确保您使用了正确的仓库名重新构建：
+```bash
+./build-with-repo-name.sh 您的实际仓库名
+```
+
+### 3. 如果GitHub Pages显示"Get Pages site failed"
+
+- 等待几分钟让GitHub完成部署
+- 确保docs文件夹包含index.html和assets文件夹
+- 检查仓库是否为公开状态（或您有GitHub Pro）
+
+## 📝 重要提醒
+
+每次想要更新网站内容时，都需要：
+1. 修改源代码
+2. 重新运行构建脚本（使用正确的仓库名）
+3. 提交并推送docs文件夹的更改
+
+这样才能确保GitHub Pages上的资源路径始终正确。

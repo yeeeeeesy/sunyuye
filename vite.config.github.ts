@@ -5,7 +5,7 @@ import path from 'path';
 // GitHub Pages specific configuration
 export default defineConfig({
   plugins: [react()],
-  base: './', // Use relative paths for GitHub Pages
+  base: process.env.GITHUB_REPOSITORY ? `/${process.env.GITHUB_REPOSITORY.split('/')[1]}/` : './',
   build: {
     outDir: '../docs',
     emptyOutDir: true,
