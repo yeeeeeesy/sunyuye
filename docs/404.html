@@ -4,16 +4,36 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sunyu Ye - Portfolio</title>
+  <!-- Preconnect to external fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script type="module" crossorigin src="/sunyuyu/assets/index-BWs32tWi.js"></script>
+  <link rel="modulepreload" crossorigin href="/sunyuyu/assets/vendor-CX2mysxk.js">
+  <link rel="modulepreload" crossorigin href="/sunyuyu/assets/ui-CvbprkaQ.js">
+  <link rel="stylesheet" crossorigin href="/sunyuyu/assets/index-Bj6Jz5M-.css">
   <script>
     // GitHub Pages SPA routing fix
-    const path = window.location.pathname.slice(1);
-    if (path) {
-      window.history.replaceState(null, null, '/?' + path);
-    }
+    (function() {
+      var path = window.location.pathname;
+      if (path !== '/sunyuyu/' && path !== '/sunyuyu/index.html') {
+        var newPath = path.replace('/sunyuyu/', '');
+        window.location.replace('/sunyuyu/?/' + newPath);
+      }
+    })();
   </script>
 </head>
 <body>
   <div id="root"></div>
-  <script type="module" src="/src/main.tsx"></script>
+  <script>
+    // Handle GitHub Pages SPA routing
+    (function() {
+      const search = window.location.search;
+      if (search) {
+        const path = search.slice(2); // Remove '/?'
+        window.history.replaceState(null, null, '/sunyuyu/' + path);
+      }
+    })();
+  </script>
 </body>
 </html>
