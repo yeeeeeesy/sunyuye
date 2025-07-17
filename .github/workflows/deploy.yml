@@ -1,73 +1,40 @@
-name: Build and Deploy to GitHub Pages
+name: Deploy Vite app to GitHub Pages
 
-# 禁用自动触发，改为手动部署
 on:
-  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    
-    permissions:
-      contents: write
-      pages: write
-      id-token: write
-    
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-      
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '20'
-        cache: 'npm'
-        
-    - name: Install dependencies
-      run: npm ci
-      
-    - name: Copy assets to public folder
-      run: |
-        mkdir -p client/public
-        cp -r attached_assets/* client/public/ 2>/dev/null || true
-        
-    - name: Build for GitHub Pages
-      run: |
-        # Build using the GitHub Pages specific config - outputs to docs folder
-        npx vite build --config vite.config.github.ts
-        
-    - name: Create 404.html for SPA routing
-      run: |
-        cp client/public/404.html docs/404.html 2>/dev/null || cat > docs/404.html << 'EOF'
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-          <meta charset="UTF-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>Sunyu Ye - Portfolio</title>
-          <script>
-            // GitHub Pages SPA routing fix
-            const path = window.location.pathname.slice(1);
-            if (path) {
-              window.history.replaceState(null, null, '/?' + path);
-            }
-          </script>
-        </head>
-        <body>
-          <div id="root"></div>
-          <script type="module" src="/src/main.tsx"></script>
-        </body>
-        </html>
-        EOF
-        
-    - name: Commit and push to docs folder
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add docs/
-        if git diff --staged --quiet; then
-          echo "No changes to commit"
-        else
-          git commit -m "Deploy to GitHub Pages [skip ci]"
-          git push
-        fi
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: cd client && npm install
+
+      - name: Build the site
+        run: cd client && npm run build
+
+      - name: Upload build output
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: client/dist  # 👈👈👈 确保这里正确！
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
