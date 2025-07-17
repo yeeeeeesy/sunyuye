@@ -1,9 +1,8 @@
-name: Deploy to GitHub Pages
+name: Build and Deploy to GitHub Pages
 
 on:
   push:
     branches: [ main ]
-    paths: [ 'docs/**' ]
   workflow_dispatch:
 
 permissions:
@@ -16,7 +15,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  deploy:
+  build-and-deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -24,6 +23,25 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Copy assets to client/public
+        run: |
+          mkdir -p client/public
+          cp -r attached_assets/* client/public/ 2>/dev/null || true
+
+      - name: Build for GitHub Pages
+        run: |
+          export GITHUB_REPOSITORY="${{ github.repository }}"
+          npx vite build --config vite.config.github.ts
         
       - name: Setup Pages
         uses: actions/configure-pages@v4
