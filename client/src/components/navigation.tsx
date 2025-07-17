@@ -1,6 +1,7 @@
 import { useLanguage } from '@/hooks/use-language';
 import { useTheme } from '@/hooks/use-theme';
 import { Button } from '@/components/ui/button';
+import { Chatbot } from '@/components/chatbot';
 import { Moon, Sun } from 'lucide-react';
 
 export function Navigation() {
@@ -79,6 +80,7 @@ export function Navigation() {
             </div>
           </div>
           <div className="flex items-center space-x-4">
+            <Chatbot variant="header" />
             <Button
               variant="ghost"
               size="sm"

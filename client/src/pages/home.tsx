@@ -1,7 +1,7 @@
 import { Navigation } from '@/components/navigation';
 import { Sidebar } from '@/components/sidebar';
 import { ContentSections } from '@/components/content-sections';
-import { AIChatbot } from '@/components/ai-chatbot';
+import { Chatbot } from '@/components/chatbot';
 
 export default function Home() {
   return (
@@ -18,7 +18,8 @@ export default function Home() {
         </main>
       </div>
       
-      <AIChatbot />
+      {/* Floating chatbot */}
+      <Chatbot variant="floating" />
     </div>
   );
 }

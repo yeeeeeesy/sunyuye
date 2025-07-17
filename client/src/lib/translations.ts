@@ -8,7 +8,8 @@ export const translations = {
       project: "Projects",
       programs: "Awards",
       skills: "Skills",
-      contact: "Get In Touch"
+      contact: "Get In Touch",
+      chat: "Chat"
     },
     personal: {
       name: "Sunyu Ye",
@@ -163,7 +164,8 @@ export const translations = {
       project: "项目",
       programs: "获奖",
       skills: "技能",
-      contact: "联系我"
+      contact: "联系我",
+      chat: "聊天助手"
     },
     personal: {
       name: "叶孙渝",
