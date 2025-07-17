@@ -1,15 +1,11 @@
 #!/bin/bash
 
-# GitHub Pages 部署脚本 - 指定仓库名版本
+# GitHub Pages 部署脚本
 
 # 检查是否提供了仓库名参数
 if [ $# -eq 0 ]; then
     echo "使用方法: $0 <仓库名>"
     echo "例如: $0 my-portfolio"
-    echo ""
-    echo "或者设置环境变量后运行 build-github-pages.sh:"
-    echo "export GITHUB_REPOSITORY=用户名/仓库名"
-    echo "./build-github-pages.sh"
     exit 1
 fi
 
