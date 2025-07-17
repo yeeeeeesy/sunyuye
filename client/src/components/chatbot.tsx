@@ -1,9 +1,9 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { MessageCircle, Send, X, Bot, User } from 'lucide-react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
+import { MessageCircle, X, Bot, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { ChatInput } from './chat-input';
 import { useLanguage } from '@/hooks/use-language';
 import { useToast } from '@/hooks/use-toast';
 
@@ -22,7 +22,6 @@ interface ChatbotProps {
 export function Chatbot({ variant = 'floating', className = '' }: ChatbotProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
-  const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const { language, t } = useLanguage();
   const { toast } = useToast();
@@ -37,7 +36,7 @@ export function Chatbot({ variant = 'floating', className = '' }: ChatbotProps) 
     scrollToBottom();
   }, [messages]);
 
-  // Initialize with welcome message
+  // Initialize with welcome message only once when opened
   useEffect(() => {
     if (isOpen && messages.length === 0) {
       const welcomeMessage = language === 'zh' 
@@ -51,21 +50,19 @@ export function Chatbot({ variant = 'floating', className = '' }: ChatbotProps) 
         timestamp: new Date()
       }]);
     }
-  }, [isOpen, language, messages.length]);
+  }, [isOpen]);
 
-  const sendMessage = async () => {
-    if (!inputValue.trim() || isLoading) return;
+  const handleSendMessage = useCallback(async (messageText: string) => {
+    if (!messageText.trim() || isLoading) return;
 
     const userMessage: Message = {
       id: Date.now().toString(),
       type: 'user',
-      content: inputValue,
+      content: messageText,
       timestamp: new Date()
     };
 
-    const messageToSend = inputValue;
     setMessages(prev => [...prev, userMessage]);
-    setInputValue('');
     setIsLoading(true);
 
     try {
@@ -75,7 +72,7 @@ export function Chatbot({ variant = 'floating', className = '' }: ChatbotProps) 
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          message: messageToSend,
+          message: messageText,
           sessionId: sessionId.current,
           language
         }),
@@ -100,7 +97,7 @@ export function Chatbot({ variant = 'floating', className = '' }: ChatbotProps) 
       
       // Use static response as fallback
       const { generateStaticChatResponse } = await import('@/lib/static-data');
-      const staticResponse = generateStaticChatResponse(messageToSend, language);
+      const staticResponse = generateStaticChatResponse(messageText, language);
       
       const botMessage: Message = {
         id: (Date.now() + 1).toString(),
@@ -120,18 +117,9 @@ export function Chatbot({ variant = 'floating', className = '' }: ChatbotProps) 
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [isLoading, language]);
 
-  const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault();
-      sendMessage();
-    }
-  };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
-  };
 
   const ChatButton = React.forwardRef<HTMLButtonElement>((props, ref) => (
     <Button
@@ -212,26 +200,11 @@ export function Chatbot({ variant = 'floating', className = '' }: ChatbotProps) 
         <div ref={messagesEndRef} />
       </ScrollArea>
       
-      <div className="border-t p-4">
-        <div className="flex space-x-2">
-          <Input
-            value={inputValue}
-            onChange={handleInputChange}
-            onKeyPress={handleKeyPress}
-            placeholder={language === 'zh' ? '输入您的问题...' : 'Type your question...'}
-            disabled={isLoading}
-            className="flex-1"
-            autoComplete="off"
-          />
-          <Button
-            onClick={sendMessage}
-            disabled={!inputValue.trim() || isLoading}
-            size="sm"
-          >
-            <Send className="h-4 w-4" />
-          </Button>
-        </div>
-      </div>
+      <ChatInput
+        onSendMessage={handleSendMessage}
+        isLoading={isLoading}
+        placeholder={language === 'zh' ? '输入您的问题...' : 'Type your question...'}
+      />
     </div>
   );
 
