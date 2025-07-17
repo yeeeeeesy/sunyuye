@@ -129,6 +129,10 @@ export function Chatbot({ variant = 'floating', className = '' }: ChatbotProps) 
     }
   };
 
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(e.target.value);
+  };
+
   const ChatButton = React.forwardRef<HTMLButtonElement>((props, ref) => (
     <Button
       ref={ref}
@@ -212,11 +216,12 @@ export function Chatbot({ variant = 'floating', className = '' }: ChatbotProps) 
         <div className="flex space-x-2">
           <Input
             value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
+            onChange={handleInputChange}
             onKeyPress={handleKeyPress}
             placeholder={language === 'zh' ? '输入您的问题...' : 'Type your question...'}
             disabled={isLoading}
             className="flex-1"
+            autoComplete="off"
           />
           <Button
             onClick={sendMessage}
