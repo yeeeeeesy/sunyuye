@@ -4,7 +4,7 @@ import path from 'path';
 
 // GitHub Pages specific configuration
 export default defineConfig({
-  base: '/sunyuyu/',
+  base: '/sunyuye/',
   plugins: [react()],
   build: {
     outDir: '../docs',
