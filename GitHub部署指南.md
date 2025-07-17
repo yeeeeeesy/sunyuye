@@ -81,7 +81,16 @@ cd docs && python -m SimpleHTTPServer 8000
 
 ### 手动部署步骤
 
-如果您想手动部署到docs文件夹：
+推荐使用简化的部署脚本：
+
+```bash
+# 1. 运行部署脚本（会自动构建、提交和推送）
+./deploy.sh
+
+# 2. 在GitHub仓库设置中启用Pages，选择main分支的docs文件夹
+```
+
+或者分步操作：
 
 ```bash
 # 1. 构建静态文件到docs文件夹
