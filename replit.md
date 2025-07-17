@@ -97,18 +97,24 @@ The application is designed to be deployment-ready for platforms like Vercel, Ne
 - **Static Data Integration**: Implemented client-side data serving for portfolio content and AI chatbot responses
 - **GitHub Actions Workflow**: Automated build and deployment pipeline for GitHub Pages
 - **SPA Routing Support**: Added client-side routing compatibility for GitHub Pages hosting
+- **Docs Folder Deployment**: Configured build output to docs/ folder for standard GitHub Pages deployment
+- **Chinese Documentation**: Added comprehensive Chinese deployment guide (GitHub部署指南.md)
 
 ### GitHub Pages Configuration
-- **Build Configuration**: `vite.config.github.ts` for static site generation
-- **Deployment Workflow**: `.github/workflows/deploy.yml` for automated CI/CD
+- **Build Configuration**: `vite.config.github.ts` for static site generation with docs/ output
+- **Deployment Workflow**: `.github/workflows/deploy.yml` for automated CI/CD  
+- **Manual Build Script**: `build-github-pages.sh` for local testing and manual deployment
 - **Static Fallbacks**: AI chatbot and portfolio data work without backend API
 - **Asset Management**: Resume and images served from static public directory
 - **Routing Support**: Custom 404.html and index.html for single-page application routing
+- **Docs Folder**: Standard GitHub Pages deployment using docs/ folder from main branch
 
 ### Deployment Steps
 1. **Repository Setup**: Push code to GitHub repository
-2. **Enable GitHub Pages**: Configure repository settings for GitHub Actions deployment
-3. **Automatic Deployment**: Workflow triggers on push to main branch
-4. **Static Assets**: Resume and profile images automatically included in build
+2. **Local Build**: Run `./build-github-pages.sh` to generate docs/ folder
+3. **Commit Docs**: Add and commit the docs/ folder to git
+4. **Enable GitHub Pages**: Configure repository settings to deploy from main branch docs/ folder  
+5. **Live Site**: Portfolio available at https://username.github.io/repository-name
+6. **Static Assets**: Resume and profile images automatically included in build
 
 The dual deployment strategy allows the application to work both as a full-stack application (with Express server and OpenAI integration) and as a static site (with fallback responses and client-side data) depending on the hosting environment.

@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [react()],
   base: './', // Use relative paths for GitHub Pages
   build: {
-    outDir: 'dist',
+    outDir: '../docs',
     emptyOutDir: true,
     sourcemap: false,
     rollupOptions: {

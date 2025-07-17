@@ -1,22 +1,15 @@
-name: Deploy to GitHub Pages
+name: Build and Deploy to GitHub Pages
 
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
-    
     steps:
-    - name: Checkout
+    - name: Checkout repository
       uses: actions/checkout@v4
       
     - name: Setup Node.js
@@ -35,17 +28,37 @@ jobs:
         
     - name: Build for GitHub Pages
       run: |
-        # Build using the GitHub Pages specific config
+        # Build using the GitHub Pages specific config - outputs to docs folder
         npx vite build --config vite.config.github.ts
         
-    - name: Setup Pages
-      uses: actions/configure-pages@v4
-      
-    - name: Upload artifact
-      uses: actions/upload-pages-artifact@v3
-      with:
-        path: './dist'
+    - name: Create 404.html for SPA routing
+      run: |
+        cp client/public/404.html docs/404.html 2>/dev/null || cat > docs/404.html << 'EOF'
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>Sunyu Ye - Portfolio</title>
+          <script>
+            // GitHub Pages SPA routing fix
+            const path = window.location.pathname.slice(1);
+            if (path) {
+              window.history.replaceState(null, null, '/?' + path);
+            }
+          </script>
+        </head>
+        <body>
+          <div id="root"></div>
+          <script type="module" src="/src/main.tsx"></script>
+        </body>
+        </html>
+        EOF
         
-    - name: Deploy to GitHub Pages
-      id: deployment
-      uses: actions/deploy-pages@v4
+    - name: Commit and push to docs folder
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add docs/
+        git diff --staged --quiet || git commit -m "Deploy to GitHub Pages"
+        git push
